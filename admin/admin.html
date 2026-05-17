@@ -1,260 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel Administrativo | Limpeza de pele | Ariane Tadday</title>
-  <meta
-    name="description"
-    content="Painel administrativo inicial de Limpeza de pele | Ariane Tadday com foco em agenda, clientes e confirmações."
-  >
-  <meta name="theme-color" content="#fff7f1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
-    rel="stylesheet"
-  >
-  <link rel="stylesheet" href="./admin.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de administrador | Ariane Tadday</title>
+  <!-- Fonte elegante do Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../admin/admin.css" />
 </head>
 <body>
-  <div class="admin-app">
-    <header class="topbar">
-      <div class="topbar__intro">
-        <p class="eyebrow">Limpeza de pele | Ariane Tadday</p>
-        <h1>Painel administrativo</h1>
-       
-      </div>
 
-      <div class="topbar__actions">
-        <button class="secondary-button" type="button" data-scroll-target="agenda-hoje">Ver agenda</button>
-        <button class="primary-button" type="button" data-scroll-target="acoes-rapidas">Novo atendimento</button>
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-icon">✦</span>
+      <div class="brand-text">
+        <span class="brand-name">Ariane Tadday</span>
+        <span class="brand-sub">Limpeza de pele</span>
       </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-section="dashboard">
+        <span class="nav-icon">◈</span>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-item" data-section="agenda">
+        <span class="nav-icon">◷</span>
+        <span>Agenda de Hoje</span>
+      </button>
+      <button class="nav-item" data-section="clientes">
+        <span class="nav-icon">◎</span>
+        <span>Clientes</span>
+      </button>
+      <button class="nav-item" data-section="procedimentos">
+        <span class="nav-icon">◇</span>
+        <span>Procedimentos</span>
+      </button>
+      <button class="nav-item" data-section="novo-agendamento">
+        <span class="nav-icon">＋</span>
+        <span>Novo Agendamento</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="sidebar-date" id="sidebar-date"></span>
+    </div>
+  </aside>
+
+  <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+  <main class="main-content">
+
+    <!-- Cabeçalho -->
+    <header class="top-header">
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">☰</button>
+      <div class="header-title">
+        <h1>Limpeza de pele <span class="header-title-sub">| Ariane Tadday</span></h1>
+      </div>
+      <div class="header-time" id="header-time"></div>
     </header>
 
-    <nav class="section-nav" aria-label="Navegação do painel">
-      <a class="section-nav__link is-active" href="#resumo" data-nav-link>Resumo</a>
-      <a class="section-nav__link" href="#agenda-hoje" data-nav-link>Agenda</a>
-      <a class="section-nav__link" href="#clientes" data-nav-link>Clientes</a>
-      <a class="section-nav__link" href="#procedimentos" data-nav-link>Procedimentos</a>
-      <a class="section-nav__link" href="#whatsapp" data-nav-link>WhatsApp</a>
-    </nav>
+    <!-- ============ SEÇÃO: DASHBOARD ============ -->
+    <section class="section active" id="dashboard">
+      <div class="section-header">
+        <h2 class="section-title">Visão Geral</h2>
+        <p class="section-subtitle">Resumo do dia de hoje</p>
+      </div>
 
-    <main class="dashboard">
-      <section class="hero surface" id="resumo" data-section>
-        <div class="hero__content">
-          <p class="eyebrow">Para hoje</p>
-          <h2 id="daily-message-title">Cada atendimento é uma oportunidade de cuidar com excelência.</h2>
-          <p id="daily-message-copy">
-            Organize o dia com calma, siga uma etapa de cada vez e mantenha o foco no que realmente importa.
-          </p>
-
-          <div class="verse-card">
-            <span class="verse-card__label">Versículo do dia</span>
-            <blockquote class="verse-card__text" id="daily-verse-text">
-              "Tudo posso naquele que me fortalece."
-            </blockquote>
-            <cite class="verse-card__reference" id="daily-verse-reference">Filipenses 4:13</cite>
-          </div>
+      <!-- Cards de resumo -->
+      <div class="cards-grid">
+        <div class="card card-accent">
+          <div class="card-label">Agendamentos Hoje</div>
+          <div class="card-value" id="card-hoje">0</div>
+          <div class="card-hint">atendimentos previstos</div>
         </div>
-
-        <div class="hero__focus">
-          <span class="hero__label">Próximo atendimento</span>
-          <strong id="next-appointment-time">Nenhum horário carregado</strong>
+        <div class="card">
+          <div class="card-label">Clientes Cadastradas</div>
+          <div class="card-value" id="card-clientes">0</div>
+          <div class="card-hint">no sistema</div>
         </div>
-      </section>
-
-      <section class="metrics" aria-label="Indicadores principais">
-        <article class="metric-card surface">
-          <span class="metric-card__label">Atendimentos hoje</span>
-          <strong class="metric-card__value metric-card__value--placeholder" id="metric-appointments">--</strong>
-          <span class="metric-card__meta">Total calculado a partir da agenda.</span>
-        </article>
-        <article class="metric-card surface">
-          <span class="metric-card__label">Pendências</span>
-          <strong class="metric-card__value metric-card__value--placeholder" id="metric-pending">--</strong>
-          <span class="metric-card__meta">Confirmações e remarcações em aberto.</span>
-        </article>
-        <article class="metric-card surface">
-          <span class="metric-card__label">Clientes ativos</span>
-          <strong class="metric-card__value metric-card__value--placeholder" id="metric-clients">--</strong>
-          <span class="metric-card__meta">Total vindo da base de clientes.</span>
-        </article>
-        <article class="metric-card surface">
-          <span class="metric-card__label">Serviços cadastrados</span>
-          <strong class="metric-card__value metric-card__value--placeholder" id="metric-services">--</strong>
-          <span class="metric-card__meta">Quantidade vinda do catálogo.</span>
-        </article>
-      </section>
-
-      <div class="dashboard-grid">
-        <div class="dashboard-column">
-          <section class="surface section-card" id="agenda-hoje" data-section>
-            <div class="section-card__header">
-              <div>
-                <p class="eyebrow">Hoje</p>
-                <h3>Agenda do dia</h3>
-              </div>
-              <button class="inline-button" type="button">Exportar</button>
-            </div>
-
-            <div class="timeline" id="agenda-list">
-              <div class="empty-state">
-                <strong>Agenda ainda não conectada.</strong>
-                <p>Os horários do dia serão renderizados aqui quando separarmos os dados no JavaScript.</p>
-              </div>
-            </div>
-          </section>
-
-          <section class="surface section-card" id="clientes" data-section>
-            <div class="section-card__header">
-              <div>
-                <p class="eyebrow">Cadastro</p>
-                <h3>Clientes</h3>
-              </div>
-            </div>
-
-            <div class="split-card">
-              <form class="form-grid">
-                <label>
-                  Nome completo
-                  <input type="text" placeholder="Ex.: Juliana Martins">
-                </label>
-                <label>
-                  WhatsApp
-                  <input type="tel" placeholder="(11) 99999-9999">
-                </label>
-                <label>
-                  Procedimento
-                  <select>
-                    <option>Selecione</option>
-                    <option>Design de sobrancelhas</option>
-                    <option>Limpeza de pele</option>
-                    <option>Brow lamination</option>
-                  </select>
-                </label>
-                <label>
-                  Observações
-                  <textarea rows="4" placeholder="Preferências e observações rápidas."></textarea>
-                </label>
-                <button class="primary-button form-button" type="button">Salvar cliente</button>
-              </form>
-
-              <div class="mini-list">
-                <h4>Recentes</h4>
-                <div id="recent-clients-list">
-                  <div class="empty-state empty-state--compact">
-                    <strong>Nenhum cliente carregado.</strong>
-                    <p>Os últimos cadastros aparecerão aqui.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+        <div class="card">
+          <div class="card-label">Confirmados</div>
+          <div class="card-value" id="card-confirmados">0</div>
+          <div class="card-hint">para hoje</div>
         </div>
-
-        <div class="dashboard-column">
-          <section class="surface section-card" id="acoes-rapidas" data-section>
-            <div class="section-card__header">
-              <div>
-                <p class="eyebrow">Atalhos</p>
-                <h3>Ações rápidas</h3>
-              </div>
-            </div>
-
-            <div class="action-grid">
-              <button class="action-card" type="button">
-                <strong>Novo cliente</strong>
-                <span>Cadastro básico em poucos campos.</span>
-              </button>
-              <button class="action-card" type="button">
-                <strong>Abrir horário</strong>
-                <span>Criar disponibilidade na agenda.</span>
-              </button>
-              <button class="action-card" type="button">
-                <strong>Confirmar pelo WhatsApp</strong>
-                <span>Enviar mensagem pronta.</span>
-              </button>
-              <button class="action-card" type="button">
-                <strong>Cadastrar serviço</strong>
-                <span>Atualizar o catálogo do studio.</span>
-              </button>
-            </div>
-          </section>
-
-          <section class="surface section-card" id="procedimentos" data-section>
-            <div class="section-card__header">
-              <div>
-                <p class="eyebrow">Serviços</p>
-                <h3>Procedimentos</h3>
-              </div>
-            </div>
-
-            <form class="form-grid">
-              <label>
-                Nome do procedimento
-                <input type="text" placeholder="Ex.: Brow lamination">
-              </label>
-              <label>
-                Duração média
-                <input type="text" placeholder="Ex.: 1h 20min">
-              </label>
-              <label>
-                Valor base
-                <input type="text" placeholder="Ex.: R$ 120,00">
-              </label>
-              <label>
-                Descrição
-                <textarea rows="4" placeholder="Resumo rápido do procedimento."></textarea>
-              </label>
-              <button class="primary-button form-button" type="button">Salvar procedimento</button>
-            </form>
-
-            <div class="pill-list" id="services-list">
-              <span class="pill pill--placeholder">Os procedimentos cadastrados serão listados aqui.</span>
-            </div>
-          </section>
-
-          <section class="surface section-card" id="whatsapp" data-section>
-            <div class="section-card__header">
-              <div>
-                <p class="eyebrow">Comunicação</p>
-                <h3>WhatsApp</h3>
-              </div>
-            </div>
-
-            <div class="message-box">
-              <span class="message-box__label">Modelo de confirmação</span>
-              <p>
-                Olá, [nome]! Passando para confirmar seu atendimento de [procedimento] no dia [data], às
-                [horário]. Se precisar remarcar, me avise por aqui.
-              </p>
-            </div>
-
-            <div class="check-list" id="whatsapp-status-list">
-              <div class="empty-state empty-state--compact">
-                <strong>Nenhum status carregado.</strong>
-                <p>Os resumos de confirmações e remarcações entrarão aqui.</p>
-              </div>
-            </div>
-
-            <div class="button-row">
-              <button class="secondary-button" type="button">Editar mensagem</button>
-              <button class="primary-button" type="button">Enviar confirmações</button>
-            </div>
-          </section>
+        <div class="card card-gold">
+          <div class="card-label">Próximo Horário</div>
+          <div class="card-value" id="card-proximo">—</div>
+          <div class="card-hint" id="card-proximo-nome">—</div>
         </div>
       </div>
-    </main>
 
-    <nav class="bottom-nav" aria-label="Navegação mobile">
-      <a class="bottom-nav__link is-active" href="#resumo" data-nav-link>Resumo</a>
-      <a class="bottom-nav__link" href="#agenda-hoje" data-nav-link>Agenda</a>
-      <a class="bottom-nav__link" href="#clientes" data-nav-link>Clientes</a>
-      <a class="bottom-nav__link" href="#whatsapp" data-nav-link>WhatsApp</a>
-    </nav>
-  </div>
+      <!-- Lista rápida do dia -->
+      <div class="section-header" style="margin-top: 2.5rem;">
+        <h2 class="section-title">Próximos Atendimentos</h2>
+      </div>
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Horário</th>
+              <th>Cliente</th>
+              <th>Procedimento</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-dashboard"></tbody>
+        </table>
+      </div>
+    </section>
 
-  <script src="./admin.js"></script>
+    <!-- ============ SEÇÃO: AGENDA ============ -->
+    <section class="section" id="agenda">
+      <div class="section-header">
+        <h2 class="section-title">Agenda de Hoje</h2>
+        <p class="section-subtitle" id="agenda-data"></p>
+      </div>
+      <div class="agenda-list" id="agenda-list"></div>
+    </section>
+
+    <!-- ============ SEÇÃO: CLIENTES ============ -->
+    <section class="section" id="clientes">
+      <div class="section-header">
+        <h2 class="section-title">Clientes</h2>
+        <p class="section-subtitle">Clientes cadastradas no studio</p>
+      </div>
+      <div class="clientes-grid" id="clientes-grid"></div>
+    </section>
+
+    <!-- ============ SEÇÃO: PROCEDIMENTOS ============ -->
+    <section class="section" id="procedimentos">
+      <div class="section-header">
+        <h2 class="section-title">Procedimentos</h2>
+        <p class="section-subtitle">Serviços oferecidos pelo studio</p>
+      </div>
+      <div class="procedimentos-grid" id="procedimentos-grid"></div>
+    </section>
+
+    <!-- ============ SEÇÃO: NOVO AGENDAMENTO ============ -->
+    <section class="section" id="novo-agendamento">
+      <div class="section-header">
+        <h2 class="section-title">Novo Agendamento</h2>
+        <p class="section-subtitle">Preencha os dados abaixo</p>
+      </div>
+
+      <div class="form-card">
+        <div class="form-group">
+          <label class="form-label">Nome da Cliente</label>
+          <input class="form-input" type="text" id="form-nome" placeholder="Ex: Maria Silva" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">WhatsApp</label>
+          <input class="form-input" type="tel" id="form-whatsapp" placeholder="(48) 9 9999-9999" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Procedimento</label>
+          <select class="form-input" id="form-procedimento">
+            <option value="">Selecione...</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Data</label>
+            <input class="form-input" type="date" id="form-data" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Horário</label>
+            <input class="form-input" type="time" id="form-horario" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Observação <span class="form-optional">(opcional)</span></label>
+          <textarea class="form-input form-textarea" id="form-obs" placeholder="Alguma observação relevante..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-outline" id="btn-limpar">Limpar</button>
+          <button class="btn btn-primary" id="btn-salvar">Salvar Agendamento</button>
+        </div>
+        <div class="form-feedback" id="form-feedback"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../admin/admin.js"></script>
 </body>
 </html>
