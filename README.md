@@ -1,6 +1,6 @@
-# Studio Ariet Passos
+# Limpeza de pele | Ariane Tadday
 
-Sistema web desenvolvido para auxiliar a organização de atendimentos, agendamentos e clientes do Studio Ariet Passos.
+Sistema web desenvolvido para auxiliar a organização de atendimentos, agendamentos e clientes de Limpeza de pele | Ariane Tadday.
 
 ## Objetivo
 

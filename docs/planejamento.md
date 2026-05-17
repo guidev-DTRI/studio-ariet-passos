@@ -1,8 +1,8 @@
-# Planejamento — Studio Ariet Passos
+# Planejamento — Limpeza de pele | Ariane Tadday
 
 ## Objetivo do projeto
 
-Criar um sistema web para organizar os atendimentos do Studio Ariet Passos, começando pelo painel administrativo.
+Criar um sistema web para organizar os atendimentos de Limpeza de pele | Ariane Tadday, começando pelo painel administrativo.
 
 ## Público-alvo
 
